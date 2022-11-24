@@ -1,7 +1,7 @@
 clear
 close all
 
-load('/home/simon/ma/code/soundQuality/data/expData_norm.mat');
+load('data/expData_norm.mat');
 expData = expData_norm;
 run plot_properties.m
 

@@ -2,7 +2,8 @@ clear
 close all
 
 % define path of data
-allFiles = dir('/home/simon/ma/code/soundQuality/data/all/');
+folderName = 'data/responses/';
+allFiles = dir(folderName);
 
 % get all file names
 allNames = {allFiles(~[allFiles.isdir]).name};
@@ -48,7 +49,7 @@ nPitch = numel(pitches);
 
 % read table
 for iPart = 1:nPart
-    filename = strcat('/home/simon/ma/code/soundQuality/data/all/',allNames{iPart});
+    filename = strcat(folderName,allNames{iPart});
     T = sortrows(readtable(filename));
 
     for iExp = 1:nExp
@@ -105,5 +106,5 @@ for iPart = 1:nPart
 
 end
 
-save('/home/simon/ma/code/soundQuality/data/expData_raw.mat','expData_raw')
-save('/home/simon/ma/code/soundQuality/data/expData_norm.mat','expData_norm')
+save('data/expData_raw.mat','expData_raw')
+save('data/expData_norm.mat','expData_norm')

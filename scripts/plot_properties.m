@@ -8,7 +8,7 @@ pp.markersize = 5;
 pp.scatterMsize = 10;
 pp.fname = 'Helvetica';
 
-fig_folder = './plots';
+fig_folder = 'figures/';
 
 % define instruments
 instruments = {'Violin','VocalAlto','ClarinetBb','Tuba'};
