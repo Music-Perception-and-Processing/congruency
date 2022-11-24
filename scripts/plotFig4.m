@@ -1,7 +1,7 @@
 clear
 close all
 
-load('/home/simon/ma/code/soundQuality/data/expData_norm.mat')
+load('data/expData_norm.mat')
 expData = expData_norm;
 run plot_properties.m
 
@@ -33,7 +33,7 @@ figh4 = figure('visible', pp.visible,...
     'DefaultAxesFontName', pp.fname);
 axh4 = axes('Parent', figh4);
 hold(axh4, 'on');
-box(axh4, 'off');
+box(axh4, 'on');
 
 tl = tiledlayout(2,2,'TileSpacing','compact','Padding','compact');
 c = lines(3);

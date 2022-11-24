@@ -15,7 +15,7 @@ figh3 = figure('visible', pp.visible,...
     'DefaultAxesFontName', pp.fname);
 axh3 = axes('Parent', figh3);
 hold(axh3, 'on');
-box(axh3, 'off');
+box(axh3, 'on');
 
 tl = tiledlayout(1,4,'TileSpacing','loose','Padding','compact');
 c = lines(3);
@@ -140,6 +140,8 @@ for iInstr = 1:nInstr
     title(instrumentNames{iInstr})
 
     pbaspect([1 1 1])
+
+    box on
 
 end
 

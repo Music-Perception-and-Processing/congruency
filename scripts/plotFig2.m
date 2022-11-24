@@ -10,7 +10,7 @@ figh2 = figure('visible', pp.visible,...
     'DefaultAxesFontName', pp.fname);
 axh2 = axes('Parent', figh2);
 hold(axh2, 'on');
-box(axh2, 'off');
+box(axh2, 'on');
 
 regIdx.Violin = [2 3 4];
 regIdx.VocalAlto = [2 3 4];
@@ -251,6 +251,7 @@ for iInstr = 1:nInstr
     %     title(instrName)
 
     set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
+    box on
 
 end
 % title(tl,['N = ',num2str(nPart)],'FontSize',24,'FontWeight','bold')
@@ -259,7 +260,7 @@ ylabel(tl,'Plausibility rating','FontSize',pp.fsize+1,'FontWeight','normal')
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
 
 legh.Position(1) = legh.Position(1)-0.16;
-legh.Position(2) = legh.Position(2)+0.17;
+legh.Position(2) = legh.Position(2)+0.19;
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)

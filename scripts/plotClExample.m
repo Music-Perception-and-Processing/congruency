@@ -32,7 +32,7 @@ figh1 = figure('visible', pp.visible,...
     'DefaultAxesFontName', pp.fname);
 axh1 = axes('Parent', figh1);
 hold(axh1, 'on');
-box(axh1, 'off');
+box(axh1, 'on');
 
 tl = tiledlayout(2,3,'TileSpacing','loose','Padding','compact');
 xlabel(tl,'Frequency / kHz','FontSize',pp.fsize+1)
@@ -113,7 +113,7 @@ for ii = 1:3
     ylim([-90 10])
     yticks([-90 -60 -30 0])
 
-    box off
+    box on
 
 end
 
@@ -164,13 +164,13 @@ for ii = 1:3
     elseif ii == 2
         legh = legend([pc ph],{'HRA-SE','H(HRA)'},...
             'Location','best');
-        legh.Position(1) = legh.Position(1) - 0.07;
-        legh.Position(2) = legh.Position(2) - 0.196;
+        legh.Position(1) = legh.Position(1) - 0.0387;
+        legh.Position(2) = legh.Position(2) - 0.188;
     else
         legh = legend([pc ph],{'F#6-SE','H(F#6)'},...
             'Location','best');
-        legh.Position(1) = legh.Position(1) - 0.071;
-        legh.Position(2) = legh.Position(2) - 0.196;
+        legh.Position(1) = legh.Position(1) - 0.105;
+        legh.Position(2) = legh.Position(2) - 0.188;
     end
     legh.ItemTokenSize = [10 1 0];
 %     legh.Position(1) = legh.Position(1) - 0.05;
@@ -192,7 +192,7 @@ for ii = 1:3
     ylim([-90 10])
     yticks([-90 -60 -30 0])
 
-    box off
+    box on
 
 end
 

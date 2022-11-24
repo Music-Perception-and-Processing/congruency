@@ -10,7 +10,7 @@ figh5 = figure('visible', pp.visible,...
     'DefaultAxesFontName', pp.fname);
 axh5 = axes('Parent', figh5);
 hold(axh5, 'on');
-box(axh5, 'off');
+box(axh5, 'on');
 
 % concatenate data
 data = [];
@@ -56,7 +56,7 @@ end
 % tbl = table(x1,categorical(x2),categorical(x3),y,'VariableNames',{'pitch','cond','instr','resp'});
 % lm = fitlm(tbl,'resp ~ 1 + pitch*pitch','CategoricalVars',[2 3])
 
-nPart = 37;
+nPart = 10;
 partNum = [];
 colors = lines(nPart);
 for iPart = 1:nPart
@@ -89,7 +89,7 @@ confInt = patch([1:19 fliplr(1:19)],[CI(1,:) fliplr(CI(2,:))],...
     'EdgeColor','none');
 
 %% lme
-x = reshape(repmat(1:19,37,1),numel(partData),1);
+x = reshape(repmat(1:19,10,1),numel(partData),1);
 y = reshape(partData,numel(partData),1);
 
 % remove nans

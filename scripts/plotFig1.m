@@ -63,7 +63,7 @@ figh1 = figure('visible', pp.visible,...
     'DefaultAxesFontName', pp.fname);
 axh1 = axes('Parent', figh1);
 hold(axh1, 'on');
-box(axh1, 'off');
+box(axh1, 'on');
 
 tl = tiledlayout(2,4,'TileSpacing','loose','Padding','compact');
 c = lines(3);
@@ -246,8 +246,8 @@ for iInstr = 1:nInstr
     set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
 
     if iInstr == 4
-        legh.Position(1) = legh.Position(1)-0.35;
-        legh.Position(2) = legh.Position(2)-0.41;
+        legh.Position(1) = legh.Position(1)-0.39;
+        legh.Position(2) = legh.Position(2)-0.44;
     end
     %     if iInstr == 3
     %         legh.Position(1) = legh.Position(1)+0.135;
@@ -257,6 +257,8 @@ for iInstr = 1:nInstr
     R2
     pval
     clear R2 p
+
+    box on
 
 end
 
@@ -424,6 +426,8 @@ for iInstr = 1:nInstr
     R2
     pval
     clear R2 p
+
+    box on
 
 end
 
