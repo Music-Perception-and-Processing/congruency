@@ -1,7 +1,7 @@
 clear
 close all
 
-load('/home/simon/ma/code/soundQuality/data/trueSE.mat')
+load('data/trueSE.mat')
 
 run plot_properties.m
 
