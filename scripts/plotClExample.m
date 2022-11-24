@@ -2,8 +2,9 @@ clear
 close all
 
 load('data/trueSE.mat')
-
 run plot_properties.m
+
+addpath('functions/')
 
 pitches = {'F#1','A#1','D2',...
     'F#2','A#2','D3',...
