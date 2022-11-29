@@ -56,7 +56,7 @@ end
 % tbl = table(x1,categorical(x2),categorical(x3),y,'VariableNames',{'pitch','cond','instr','resp'});
 % lm = fitlm(tbl,'resp ~ 1 + pitch*pitch','CategoricalVars',[2 3])
 
-nPart = 10;
+nPart = 20;
 partNum = [];
 colors = lines(nPart);
 for iPart = 1:nPart
@@ -89,7 +89,7 @@ confInt = patch([1:19 fliplr(1:19)],[CI(1,:) fliplr(CI(2,:))],...
     'EdgeColor','none');
 
 %% lme
-x = reshape(repmat(1:19,10,1),numel(partData),1);
+x = reshape(repmat(1:19,20,1),numel(partData),1);
 y = reshape(partData,numel(partData),1);
 
 % remove nans
