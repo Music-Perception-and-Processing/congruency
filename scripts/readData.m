@@ -52,6 +52,16 @@ for iPart = 1:nPart
     filename = strcat(folderName,allNames{iPart});
     T = sortrows(readtable(filename));
 
+    % get completion time for compensation
+    timeTaken(iPart) = round((max(T.timestamp)-min(T.timestamp))*0.001/60);
+
+    % get participant ID
+    id = readcell(filename);
+    id = id{2,4};
+    id = split(id,',');
+    id = id{3};
+    partID(iPart) = {id};
+
     for iExp = 1:nExp
         expName = experiments{iExp};
 
@@ -106,5 +116,5 @@ for iPart = 1:nPart
 
 end
 
-save('data/expData_raw.mat','expData_raw')
-save('data/expData_norm.mat','expData_norm')
+% save('data/expData_raw.mat','expData_raw')
+% save('data/expData_norm.mat','expData_norm')
