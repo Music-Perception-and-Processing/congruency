@@ -116,5 +116,5 @@ for iPart = 1:nPart
 
 end
 
-% save('data/expData_raw.mat','expData_raw')
-% save('data/expData_norm.mat','expData_norm')
+save('data/expData_raw.mat','expData_raw')
+save('data/expData_norm.mat','expData_norm')
