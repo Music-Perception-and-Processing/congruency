@@ -4,7 +4,6 @@ load('/home/simon/ma/code/data/spectrum.mat')
 load('/home/simon/ma/code/data/analysis_v2.mat')
 load('/home/simon/ma/code/data/erbCC.mat')
 load('/home/simon/ma/code/data/NoteData.mat')
-addpath('/home/simon/ma/code/functions/')
 
 % set audiowrite flag
 sflag = 0;
@@ -248,7 +247,7 @@ for iInstr = 1:nInstr
 
             foldName = strcat(instrName,'/');
             stimName = strcat(instrName,'_',condName,'_',noteName,'.wav');
-            fileName = strcat('/home/simon/ma/code/soundQuality/sounds/new_sounds/',foldName,stimName);
+            fileName = strcat('sounds/',foldName,stimName);
 
             if sflag
                 audiowrite(fileName,sig_norm(iNote,:,iCond),fs);
@@ -259,7 +258,7 @@ for iInstr = 1:nInstr
         [r,c] = size(squeeze(sig_norm(:,:,iCond)));
         testSig = reshape(squeeze(sig_norm(:,:,iCond))',1,r*c);
         stimName = strcat(instrName,'_',condName,'_test.wav');
-        fileName = strcat('/home/simon/ma/code/soundQuality/sounds/new_sounds/',foldName,stimName);
+        fileName = strcat('sounds/',foldName,stimName);
 
         if sflag
             audiowrite(fileName,testSig,fs);
@@ -277,10 +276,10 @@ end
 randIdx = randperm(r);
 testSig = reshape(allSig(randIdx,:)',1,r*c);
 stimName = 'appetizer.wav';
-fileName = strcat('/home/simon/ma/code/soundQuality/sounds/new_sounds/',stimName);
+fileName = strcat('sounds/',stimName);
 
 if sflag
     audiowrite(fileName,testSig,fs);
 end
 
-save('/home/simon/ma/code/soundQuality/data/trueSE.mat','trueSE')
+save('data/trueSE.mat','trueSE')
