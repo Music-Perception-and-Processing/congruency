@@ -4,16 +4,16 @@ close all
 % male = 1, female = 2, divers = 3
 
 %% Pilot study
-
-nPart = 7;
-partAge = [27;23;21;26;22;29;25];
-partGender = [2;1;2;1;1;1;1];
+% 
+% nPart = 7;
+% partAge = [27;23;21;26;22;29;25];
+% partGender = [2;1;2;1;1;1;1];
 
 
 %% Main study
 
 % define path of data
-allFiles = dir('/home/simon/ma/code/soundQuality/data/main/');
+allFiles = dir('data/responses/');
 
 % get all file names
 allNames = {allFiles(~[allFiles.isdir]).name};
@@ -23,7 +23,7 @@ nPart = numel(allNames);
 
 % read table
 for iPart = 1:nPart
-    filename = strcat('/home/simon/ma/code/soundQuality/data/all/',allNames{iPart});
+    filename = strcat('data/reponses/',allNames{iPart});
     opts = detectImportOptions(filename);
     T = sortrows(readtable(filename));
 
@@ -33,7 +33,7 @@ for iPart = 1:nPart
 
 end
 
-age = [partAge;metadata(:,1)];
+age = metadata(:,1);
 meanAge = mean(age)
 stdAge = std(age)
 
