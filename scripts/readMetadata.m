@@ -23,22 +23,22 @@ nPart = numel(allNames);
 
 % read table
 for iPart = 1:nPart
-    filename = strcat('data/reponses/',allNames{iPart});
+    filename = strcat('data/responses/',allNames{iPart});
     opts = detectImportOptions(filename);
     T = sortrows(readtable(filename));
 
     metadata(iPart,1) = T.response(find(strcmp(T.condition1,'age')));
     metadata(iPart,2) = T.responseCode(find(strcmp(T.condition1,'gender')));
-    metadata(iPart,3:16) = T.responseCode(find(strcmp(T.condition1,'msiPerception11')):find(strcmp(T.condition1,'msiTraining37')));
+    metadata(iPart,3:17) = T.responseCode(find(strcmp(T.condition1,'msiPerception11')):find(strcmp(T.condition1,'msiTraining37')));
 
 end
 
 age = metadata(:,1);
-meanAge = mean(age)
-stdAge = std(age)
+meanAge = mean(age,'omitnan')
+stdAge = std(age,'omitnan')
 
-nMale = sum(metadata(:,2)==1) + sum(partGender==1)
-nFemale = sum(metadata(:,2)==2) + sum(partGender==2)
-nDivers = sum(metadata(:,2)==3) + sum(partGender==3)
+nMale = sum(metadata(:,2)==1)
+nFemale = sum(metadata(:,2)==2)
+nDivers = sum(metadata(:,2)==3)
 
 % save('/home/simon/ma/code/soundQuality/data/expData.mat','expData')
