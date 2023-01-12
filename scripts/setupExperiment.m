@@ -1,9 +1,11 @@
 clear
 close all
-load('/home/simon/ma/code/data/spectrum.mat')
-load('/home/simon/ma/code/data/analysis_v2.mat')
-load('/home/simon/ma/code/data/erbCC.mat')
-load('/home/simon/ma/code/data/NoteData.mat')
+load('data/spectrum.mat')
+load('data/analysis_v2.mat')
+load('data/erbCC.mat')
+load('data/NoteData.mat')
+
+addpath('functions/')
 
 % set audiowrite flag
 sflag = 0;
@@ -214,6 +216,9 @@ for iInstr = 1:nInstr
             % RMS normalization
             sig.(instrName)(iNote,:,iCond) = sig.(instrName)(iNote,:,iCond)./rms(sig.(instrName)(iNote,:,iCond));
 
+            % save harmonics for later analysis
+            amps.(instrName)(iNote,:,iCond) = a(1,1:2);
+
         end
 
     end
@@ -283,3 +288,4 @@ if sflag
 end
 
 save('data/trueSE.mat','trueSE')
+save('data/amps.mat','amps')
