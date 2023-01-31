@@ -67,7 +67,7 @@ set(h, 'Colormap', c)
 % cbh.Label.HorizontalAlignment = 'center';
 
 set(gca,...
-    'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top')
+    'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
 
 title('A','Position',[-32 17 0],'FontSize',pp.fsize)
 
@@ -122,7 +122,7 @@ cbh.Label.FontSize = pp.fsize;
 cbh.Label.HorizontalAlignment = 'center';
 
 set(gca,...
-    'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top')
+    'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
 title('B','Position',[-32 17 0],'FontSize',pp.fsize)
 
 xlabel(tl,'PC1','FontSize',pp.fsize+1)

@@ -2,7 +2,7 @@ clear
 close all
 
 %% EXPERIMENT 1
-load('data/expData1.mat')
+load('data/expData_norm.mat')
 load('data/F0.mat')
 load('data/ICLVL.mat')
 load('data/grid.mat')

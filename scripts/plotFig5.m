@@ -73,6 +73,12 @@ t = {'A','B','C','D'};
 pOrder = [0 3 6 9];
 mSize = [2 2 2 2];
 
+% get congruent bounds for mean computation
+for iInstr = 1:nInstr
+    instrName = instruments{iInstr};
+    cBound.(instrName) = ~isnan(expData.quality.(instrName)(1,:,4));
+end
+
 regBounds.Violin = [7.25 20];
 regBounds.VocalAlto = [6.75 13.75];
 regBounds.ClarinetBb = [5.5 16.25];
@@ -202,6 +208,9 @@ for iInstr = 1:nInstr
         %             'LineWidth',pp.linewidth)
 
         clear CI
+
+        [H,PP,CICI,STATS] = ttest2(mean(expData.quality.(instrName)(:,cBound.(instrName),iCond),2),mean(expData.quality.(instrName)(:,cBound.(instrName),4),2),'Alpha',0.001);
+        allstats(iCond,:,iInstr) = [mean(expData.quality.(instrName)(:,cBound.(instrName),iCond),'all'), std(expData.quality.(instrName)(:,cBound.(instrName),iCond),0,'all'),H,PP,CICI',STATS.tstat,STATS.df];
 
     end
 

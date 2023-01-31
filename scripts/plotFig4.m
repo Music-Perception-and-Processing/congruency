@@ -109,7 +109,7 @@ for id = 1:numel(d)
     ylim([1 6])
     yticks([1 3.5 6])
 
-    set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top')
+    set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
     xlabel([pcName{id},' (',num2str(round(pcaData.explained(id),2)),'%)'],...
         'FontWeight','normal','FontSize',pp.fsize)
     clear ci
@@ -125,7 +125,7 @@ space = {'inner','outer'};
 
 nexttile, hold on
 colors = lines(2);
-loc = [1.65,4.2;2.8,5.2];
+loc = [1.65,4.2;2.75,5.2];
 
 for iCond = 1:nCond
 
@@ -182,18 +182,18 @@ xticks([1.5 2 2.5 3 3.5])
 ylim([1 6])
 yticks([1 3.5 6])
 
-set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top')
+set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
 xlabel('Log frequency','FontWeight','normal','FontSize',pp.fsize)
 % ylabel('Sound brightness rating','FontWeight','normal','FontSize',pp.fsize)
 
 leg.Position(1) = leg.Position(1)-0.17;
-leg.Position(2) = leg.Position(2)+0.17;
+leg.Position(2) = leg.Position(2)+0.155;
 leg.Position(3) = leg.Position(3)+0.05;
-leg.Position(4) = leg.Position(4)+0.04;
+leg.Position(4) = leg.Position(4)+0.06;
 % leg.Position(4) = leg.Position(4)+0.02;
 
 leg1.Position(1) = leg1.Position(1) + 0.03;
-leg1.Position(2) = leg1.Position(2) + 0.16;
+leg1.Position(2) = leg1.Position(2) + 0.155;
 leg1.Position(3) = leg1.Position(3) + 0.025;
 leg1.Position(4) = leg1.Position(4) + 0.15;
 
