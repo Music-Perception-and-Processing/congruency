@@ -236,7 +236,7 @@ for iInstr = 1:nInstr
     ylim([1 6])
 
     xticks([1 2 3 4])
-    xticklabels({'low','mid','high','\mu'})
+    xticklabels({'low','mid','high','{$\mu$}'})
     xtickangle(0)
     yticks([1 3.5 6])
 
