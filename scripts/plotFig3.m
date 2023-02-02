@@ -18,7 +18,7 @@ hold(axh3,'on');
 box(axh3,'on');
 
 % plot settings
-tl = tiledlayout(1,5,'TileSpacing','compact','Padding','compact');
+tl = tiledlayout(1,5,'TileSpacing','loose','Padding','compact');
 
 nexttile(1,[1 3]), hold on
 
@@ -205,11 +205,11 @@ xtickangle(0)
 
 legend([s,p],'incongruent data','fit \it{(m x + b)}','Location','northeast')
 
-title('\textbf{B}','Position',[-3.1 5.8 0],'HorizontalAlignment','center')
+title('\textbf{B}','Position',[-2.4 5.8 0],'HorizontalAlignment','center')
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on')
 xlabel('ICLVL / semitones','FontWeight','normal','FontSize',pp.fsize)
-ylabel('Sound pleasantness rating','FontWeight','normal','FontSize',pp.fsize)
+% ylabel('Sound pleasantness rating','FontWeight','normal','FontSize',pp.fsize)
 
 
 if isfield(pp, 'figwidth')

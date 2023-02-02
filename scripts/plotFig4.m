@@ -129,7 +129,7 @@ space = {'inner','outer'};
 
 nexttile, hold on
 colors = lines(2);
-loc = [1.65,4.2;2.75,5.2];
+loc = [1.65,4.2;2.6,5.5];
 
 for iCond = 1:nCond
 
