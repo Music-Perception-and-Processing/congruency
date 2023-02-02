@@ -1,6 +1,10 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
 load('data/expData_norm.mat')
 expData = expData_norm;
 run plot_properties.m
@@ -234,7 +238,7 @@ for iInstr = 1:nInstr
     xticks([1 2 3 4])
     xticklabels({'low','mid','high','\mu'})
     xtickangle(0)
-    yticks([1 6])
+    yticks([1 3.5 6])
 
     if iInstr == 4
         legh = legend(p,{'LRA','MRA','HRA','congr.'},...
@@ -246,7 +250,7 @@ for iInstr = 1:nInstr
 
     %     text(-0.4,5.75,instrName,'FontSize',pp.fsize-2,'FontWeight','bold')
 
-    title(instrumentNames{iInstr})
+    title(['\textbf{',instrumentNames{iInstr},'}'])
 
     %     title(instrName)
 
@@ -255,12 +259,12 @@ for iInstr = 1:nInstr
 
 end
 % title(tl,['N = ',num2str(nPart)],'FontSize',24,'FontWeight','bold')
-xlabel(tl,'Register','FontSize',pp.fsize+1,'FontWeight','normal')
-ylabel(tl,'Plausibility rating','FontSize',pp.fsize+1,'FontWeight','normal')
+xlabel(tl,'Register','FontSize',pp.fsize+1,'Interpreter','latex')
+ylabel(tl,'Plausibility rating','FontSize',pp.fsize+1,'Interpreter','latex')
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
 
 legh.Position(1) = legh.Position(1)-0.16;
-legh.Position(2) = legh.Position(2)+0.19;
+legh.Position(2) = legh.Position(2)+0.2;
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)

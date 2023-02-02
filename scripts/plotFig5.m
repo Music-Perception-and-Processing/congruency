@@ -1,6 +1,10 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
 load('data/expData_norm.mat');
 run plot_properties.m
 
@@ -246,13 +250,16 @@ for iInstr = 1:nInstr
     %     title(t{iInstr},...
     %         'Position',[-2.3 6 0],...
     %         'HorizontalAlignment','left')
-    title(instrumentNames{iInstr})
+    title(['\textbf{',instrumentNames{iInstr},'}'])
 
     if iInstr == 1
-        text(-6,6.6,'A','FontWeight','bold')
+        text(-6,6.6,'\textbf{A}','FontWeight','bold')
     end
 
-    set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
+    set(gca,'FontSize',pp.fsize-2,...
+        'LineWidth',pp.linewidth,...
+        'FontName','Lating Modern Roman',...
+        'Layer','top')
 
     if iInstr == 4
         legh.Position(1) = legh.Position(1)-0.39;
@@ -418,10 +425,13 @@ for iInstr = 1:nInstr
     %     title(instrumentNames{iInstr})
 
     if iInstr == 1
-        text(-6,6.6,'B','FontWeight','bold')
+        text(-6,6.6,'\textbf{B}','FontWeight','bold')
     end
 
-    set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
+    set(gca,'FontSize',pp.fsize-2,...
+        'LineWidth',pp.linewidth,...
+        'FontName','Lating Modern Roman',...
+        'Layer','top')
 
     %     if iInstr == 4
     %         legh.Position(1) = legh.Position(1)-0.45;
@@ -440,8 +450,8 @@ for iInstr = 1:nInstr
 
 end
 
-xlabel(tl,'Pitch re F#','FontSize',pp.fsize+1,'FontWeight','normal')
-ylabel(tl,'Pleasantness rating','FontSize',pp.fsize+1,'FontWeight','normal')
+xlabel(tl,'Pitch re F\#','FontSize',pp.fsize+1,'Interpreter','latex')
+ylabel(tl,'Pleasantness rating','FontSize',pp.fsize+1,'Interpreter','latex')
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)

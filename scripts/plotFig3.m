@@ -1,6 +1,10 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
 load('data/expData_1.mat')
 load('data/F0data.mat')
 load('data/NoteData.mat')
@@ -91,7 +95,7 @@ for iCond = 1:numel(conds)
 % 
 %         end
 
-        text(iCond+sOSName(iSpace),1.2,sNameShort{iSpace},...
+        text(iCond+sOSName(iSpace),1.2,['\textbf{',sNameShort{iSpace},'}',],...
             'HorizontalAlignment','center',...
             'FontWeight','bold',...
             'FontSize',pp.fsize-3)
@@ -115,7 +119,7 @@ yticks([1 2 3 4 5 6])
 
 % ytickangle(90)
 
-title('A','Position',[0.25 5.8 0],'HorizontalAlignment','center')
+title('\textbf{A}','Position',[0.25 5.8 0],'HorizontalAlignment','center')
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on')
 xlabel('Conditions','FontWeight','normal','FontSize',pp.fsize)
@@ -187,7 +191,7 @@ p = plot(x,yCalc,...
     'Color',c(2,:));
 % plot(min(x):0.01:max(x),curve)
 
-text(16,2.6,['R^2 = .',num2str(100*round(stats(1),2))], ...
+text(16,2.6,['{\boldmath$R^2 =$}','\textbf{ .',num2str(100*round(stats(1),2)),'}'], ...
     'FontSize',pp.fsize,'Color',c(2,:))
 
 hold off
@@ -201,7 +205,7 @@ xtickangle(0)
 
 legend([s,p],'incongruent data','fit \it{(m x + b)}','Location','best')
 
-title('B','Position',[-4.7 5.8 0],'HorizontalAlignment','center')
+title('\textbf{B}','Position',[-4.7 5.8 0],'HorizontalAlignment','center')
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on')
 xlabel('ICLVL / semitones','FontWeight','normal','FontSize',pp.fsize)

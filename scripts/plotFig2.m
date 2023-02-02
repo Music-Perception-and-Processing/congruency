@@ -1,6 +1,10 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
 load('data/pca_data_v5.mat')
 load('data/F0data.mat')
 load('data/gridPoints.mat')
@@ -18,6 +22,8 @@ box(axh2,'on');
 
 % plot settings
 tl = tiledlayout(1,2,'TileSpacing','compact','Padding','compact');
+xlabel(tl,'PC1','FontSize',pp.fsize+1,'Interpreter','latex')
+ylabel(tl,'PC2','FontSize',pp.fsize+1,'Interpreter','latex')
 c = turbo(numel(NoteData.F0));
 
 % variables
@@ -67,9 +73,12 @@ set(h, 'Colormap', c)
 % cbh.Label.HorizontalAlignment = 'center';
 
 set(gca,...
-    'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
+    'LineWidth',pp.linewidth,...
+    'FontSize',pp.fsize-2,...
+    'Layer','top',...
+    'Box','on')
 
-title('A','Position',[-32 17 0],'FontSize',pp.fsize)
+title('\textbf{A}','Position',[-32 17 0],'FontSize',pp.fsize)
 
 
 % incongruent
@@ -120,13 +129,15 @@ cbh = colorbar(h(end),...
 cbh.Label.String = 'F0';
 cbh.Label.FontSize = pp.fsize;
 cbh.Label.HorizontalAlignment = 'center';
+cbh.Label.Interpreter = 'latex';
+set(cbh,'TickLabelInterpreter','latex')
 
 set(gca,...
-    'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
-title('B','Position',[-32 17 0],'FontSize',pp.fsize)
-
-xlabel(tl,'PC1','FontSize',pp.fsize+1)
-ylabel(tl,'PC2','FontSize',pp.fsize+1)
+    'LineWidth',pp.linewidth,...
+    'FontSize',pp.fsize-2,...
+    'Layer','top',...
+    'Box','on')
+title('\textbf{B}','Position',[-32 17 0],'FontSize',pp.fsize)
 
 
 if isfield(pp, 'figwidth')

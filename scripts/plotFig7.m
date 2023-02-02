@@ -1,6 +1,10 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
 load('data/expData_norm.mat')
 expData = expData_norm;
 run plot_properties.m
@@ -115,9 +119,9 @@ for iInstr = 1:nInstr
     yhat_all = b_all(1) + b_all(2)*x_all;
 
     p = plot(x_all,yhat_all,'Color','red','LineWidth',pp.linewidth);
-    text(4,1.5,['R^2 = .',num2str(round(stats_all(1),2)*100)],...
+    text(3.5,1.5,['{\boldmath$R^2 =$}','\textbf{ .',num2str(round(stats_all(1),2)*100),'}'],...
         'Color','red',...
-        'FontSize',pp.fsize-2)
+        'FontSize',pp.fsize-2,'Interpreter','latex')
 
     hold off
 
@@ -137,7 +141,7 @@ for iInstr = 1:nInstr
     %     text(1.1,5.7,instrName,'FontSize',pp.fsize-2,'FontWeight','bold')
 
     set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
-    title(instrumentNames{iInstr})
+    title(['\textbf{',instrumentNames{iInstr},'}'])
 
     pbaspect([1 1 1])
 
@@ -145,8 +149,8 @@ for iInstr = 1:nInstr
 
 end
 
-xlabel(tl,'Pleasantness rating','FontSize',pp.fsize+1,'FontWeight','normal')
-ylabel(tl,'Plausibility rating','FontSize',pp.fsize+1,'FontWeight','normal')
+xlabel(tl,'Pleasantness rating','FontSize',pp.fsize+1,'Interpreter','latex')
+ylabel(tl,'Plausibility rating','FontSize',pp.fsize+1,'Interpreter','latex')
 
 % legh.Position(1) = legh.Position(1)+0.12;
 

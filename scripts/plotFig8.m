@@ -1,6 +1,10 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
 load('data/expData_norm.mat');
 expData = expData_norm;
 run plot_properties.m
@@ -118,7 +122,7 @@ p = plot(1:19,mean(partData),'-k','LineWidth',pp.linewidth);
 
 hold off
 
-legend([s(1),p,confInt,fit],{'participant data','mean','95% CI',['quadratic fit (R2 = ',num2str(round(lme.Rsquared.Adjusted,2)),')']},...
+legend([s(1),p,confInt,fit],{'participant data','mean','$95\%$ CI',['quadratic fit ($R^2 =$ .',num2str(100*round(lme.Rsquared.Adjusted,2)),')']},...
     'Location','best')
 
 xlim([0 20])

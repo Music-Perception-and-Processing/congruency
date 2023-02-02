@@ -1,6 +1,10 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
 load('data/trueSE.mat')
 run plot_properties.m
 
@@ -35,8 +39,8 @@ hold(axh1, 'on');
 box(axh1, 'on');
 
 tl = tiledlayout(1,3,'TileSpacing','loose','Padding','compact');
-xlabel(tl,'Frequency / kHz','FontSize',pp.fsize+1)
-ylabel(tl,'Level / dB','FontSize',pp.fsize+1)
+xlabel(tl,'Frequency / kHz','FontSize',pp.fsize+1,'Interpreter','latex')
+ylabel(tl,'Level / dB','FontSize',pp.fsize+1,'Interpreter','latex')
 c = lines(3);
 c(4,:) = [0.5 0.5 0.5];
 

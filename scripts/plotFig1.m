@@ -1,6 +1,11 @@
 clear
 close all
 
+set(0,'defaultTextInterpreter','latex')
+set(0,'defaultAxesTickLabelInterpreter','latex')
+set(0,'defaultLegendInterpreter','latex')
+
+
 load('data/expData_1.mat')
 load('data/analysis_v2.mat')
 load('data/RangeIdx.mat')
@@ -46,6 +51,15 @@ instrNames = {'Alto voice',...
 nInstr = numel(instruments);
 
 t = tiledlayout(3, 4, 'TileSpacing', 'compact', 'Padding', 'compact');
+xlh = xlabel(t, ['PC1 (',num2str(round(pcaData.explained(1),2)),'\%)'],...
+    'FontSize',pp.fsize+1,...
+    'Color','none','Interpreter','latex');
+% xlh.Position(2) = xlh.Position(2) - 0.1;
+annotation('textbox',[0.369 0.025 0.25 0.05],...
+    'String',['PC1 (',num2str(round(pcaData.explained(1),2)),'\%)'],...
+    'EdgeColor','none','FontSize',pp.fsize+1,'Interpreter','latex')
+ylabel(t, ['PC2 (',num2str(round(pcaData.explained(2),2)),'\%)'],...
+    'FontSize', pp.fsize+1,'Interpreter','latex')
 for iInstr = 1:nInstr
     instrName = instruments{iInstr};
     h(iInstr) = nexttile(t);
@@ -79,7 +93,7 @@ for iInstr = 1:nInstr
 
 %     text(-8.5, 6.5, instrName, 'FontSize', pp.fsize-5.5, 'FontWeight', 'bold')
     hold off
-    title(instrNames{iInstr},'FontSize',pp.fsize)
+    title(['\textbf{',instrNames{iInstr},'}'])
 %     xlabel('1st principal component')
 %     ylabel('2nd principal component')
     xlim([-9 8])
@@ -121,17 +135,9 @@ cbh = colorbar(h(end), 'Ticks', cbIdx, 'TickLabels', cbNoteNames,...
 cbh.Layout.Tile = 'east';
 cbh.Label.String = 'F0 (pitch)';
 cbh.Label.FontSize = pp.fsize+1;
+cbh.Label.Interpreter = 'latex';
+set(cbh,'TickLabelInterpreter','latex')
 % cbh.Label.FontWeight = 'bold';
-
-xlh = xlabel(t, ['PC1 (',num2str(round(pcaData.explained(1),2)),'%)'],...
-    'FontSize',pp.fsize+1,...
-    'Color','none');
-% xlh.Position(2) = xlh.Position(2) - 0.1;
-annotation('textbox',[0.369 0.025 0.25 0.05],...
-    'String',['PC1 (',num2str(round(pcaData.explained(1),2)),'%)'],...
-    'EdgeColor','none','FontWeight','normal','FontSize',pp.fsize+1)
-ylabel(t, ['PC2 (',num2str(round(pcaData.explained(2),2)),'%)'],...
-    'FontSize', pp.fsize+1,'FontWeight','normal')
 
 % cbh.Position(3) = cbh.Position(3) - 0.01;
 
