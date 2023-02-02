@@ -119,7 +119,7 @@ yticks([1 2 3 4 5 6])
 
 % ytickangle(90)
 
-title('\textbf{A}','Position',[0.25 5.8 0],'HorizontalAlignment','center')
+title('\textbf{A}','Position',[0.33 5.8 0],'HorizontalAlignment','center')
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on')
 xlabel('Conditions','FontWeight','normal','FontSize',pp.fsize)
@@ -203,9 +203,9 @@ xlim([0 35])
 xticks([0 6 12 18 24 30])
 xtickangle(0)
 
-legend([s,p],'incongruent data','fit \it{(m x + b)}','Location','best')
+legend([s,p],'incongruent data','fit \it{(m x + b)}','Location','northeast')
 
-title('\textbf{B}','Position',[-4.7 5.8 0],'HorizontalAlignment','center')
+title('\textbf{B}','Position',[-3.1 5.8 0],'HorizontalAlignment','center')
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on')
 xlabel('ICLVL / semitones','FontWeight','normal','FontSize',pp.fsize)
