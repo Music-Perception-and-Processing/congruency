@@ -127,7 +127,7 @@ legend([s(1),p,confInt,fit],{'participant data','mean','$95\%$ CI',['quadratic f
 
 xlim([0 20])
 xticks([1,4,7,10,13,16,19])
-xticklabels({'F#1','F#2','F#3','F#4','F#5','F#6','F#7'})
+xticklabels({'F\#1','F\#2','F\#3','F\#4','F\#5','F\#6','F\#7'})
 xtickangle(0)
 
 ylim([1 6])
