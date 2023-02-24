@@ -1,15 +1,17 @@
 clear
 close all
 
-set(0,'defaultTextInterpreter','latex')
-set(0,'defaultAxesTickLabelInterpreter','latex')
-set(0,'defaultLegendInterpreter','latex')
+run plot_properties.m
+
+set(0,'defaultAxesFontName',pp.fname)
+set(0,'defaultTextInterpreter','tex')
+set(0,'defaultAxesTickLabelInterpreter','tex')
+set(0,'defaultLegendInterpreter','tex')
 
 load('data/pca_data_v5.mat')
 load('data/F0data.mat')
 load('data/gridPoints.mat')
 load('data/NoteData.mat')
-run plot_properties.m
 
 addpath('functions/')
 
@@ -22,8 +24,8 @@ box(axh2,'on');
 
 % plot settings
 tl = tiledlayout(1,2,'TileSpacing','compact','Padding','compact');
-xlabel(tl,'PC1','FontSize',pp.fsize+1,'Interpreter','latex')
-ylabel(tl,'PC2','FontSize',pp.fsize+1,'Interpreter','latex')
+xlabel(tl,'PC1','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
+ylabel(tl,'PC2','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
 c = turbo(numel(NoteData.F0));
 
 % variables
@@ -76,9 +78,9 @@ set(gca,...
     'LineWidth',pp.linewidth,...
     'FontSize',pp.fsize-2,...
     'Layer','top',...
-    'Box','on')
+    'Box','on','FontName',pp.fname)
 
-title('\textbf{A}','Position',[-32 17 0],'FontSize',pp.fsize)
+title('A','Position',[-32 17 0],'FontSize',pp.fsize)
 
 
 % incongruent
@@ -126,18 +128,18 @@ cbh = colorbar(h(end),...
     'FontSize', pp.fsize-4);
 
 % cbh.Layout.Tile = 'east';
-cbh.Label.String = 'F0';
+cbh.Label.String = 'F0 (pitch)';
 cbh.Label.FontSize = pp.fsize;
 cbh.Label.HorizontalAlignment = 'center';
-cbh.Label.Interpreter = 'latex';
-set(cbh,'TickLabelInterpreter','latex')
+cbh.Label.Interpreter = 'tex';
+set(cbh,'TickLabelInterpreter','tex')
 
 set(gca,...
     'LineWidth',pp.linewidth,...
     'FontSize',pp.fsize-2,...
     'Layer','top',...
-    'Box','on')
-title('\textbf{B}','Position',[-32 17 0],'FontSize',pp.fsize)
+    'Box','on','FontName',pp.fname)
+title('B','Position',[-32 17 0],'FontSize',pp.fsize)
 
 
 if isfield(pp, 'figwidth')

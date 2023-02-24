@@ -6,9 +6,14 @@ pp.figheight = 10;  % height in cm
 pp.linewidth = 1;
 pp.markersize = 5;
 pp.scatterMsize = 10;
-pp.fname = 'Helvetica';
+% pp.fname = 'Arial';
+pp.fname = 'Times New Roman';
 
-fig_folder = 'figures/';
+if strcmp(pp.fname,'Arial')
+    fig_folder = 'figures/arial/';
+elseif strcmp(pp.fname,'Times New Roman')
+    fig_folder = 'figures/tnr/';
+end
 
 % define instruments
 instruments = {'Violin','VocalAlto','ClarinetBb','Tuba'};

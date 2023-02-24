@@ -1,12 +1,14 @@
 clear
 close all
 
-set(0,'defaultTextInterpreter','latex')
-set(0,'defaultAxesTickLabelInterpreter','latex')
-set(0,'defaultLegendInterpreter','latex')
+run plot_properties.m
+
+set(0,'defaultAxesFontName',pp.fname)
+set(0,'defaultTextInterpreter','tex')
+set(0,'defaultAxesTickLabelInterpreter','tex')
+set(0,'defaultLegendInterpreter','tex')
 
 load('data/trueSE.mat')
-run plot_properties.m
 
 addpath('functions/')
 
@@ -39,8 +41,8 @@ hold(axh1, 'on');
 box(axh1, 'on');
 
 tl = tiledlayout(1,3,'TileSpacing','loose','Padding','compact');
-xlabel(tl,'Frequency / kHz','FontSize',pp.fsize+1,'Interpreter','latex')
-ylabel(tl,'Level / dB','FontSize',pp.fsize+1,'Interpreter','latex')
+xlabel(tl,'Frequency / kHz','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
+ylabel(tl,'Level / dB','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
 c = lines(3);
 c(4,:) = [0.5 0.5 0.5];
 
@@ -90,17 +92,17 @@ for ii = 1:3
         'LineWidth',pp.linewidth+0.5);
     hold off
 
-    if ii == 1
-        legh = legend([pi ph],{'LRA-SE','H(LRA)'},...
-            'Location','southwest');
-    elseif ii == 2
-        legh = legend([pc ph],{'MRA-SE','H(MRA)'},...
-            'Location','southwest');
-    else
-        legh = legend([pc ph],{'HRA-SE','H(HRA)'},...
-            'Location','southwest');
-    end
-    legh.ItemTokenSize = [10 1 0];
+%     if ii == 1
+%         legh = legend(pi,'LRSE',...
+%             'Location','southwest');
+%     elseif ii == 2
+%         legh = legend(pc,'MRSE',...
+%             'Location','southwest');
+%     else
+%         legh = legend(pc,'HRSE',...
+%             'Location','southwest');
+%     end
+%     legh.ItemTokenSize = [10 1 0];
 %     legh.Position(1) = legh.Position(1) - 0.0000001;
 %     legh.Position(2) = legh.Position(2) - 0.0000001;
 
@@ -111,7 +113,7 @@ for ii = 1:3
     set(gca,'FontSize',pp.fsize,...
         'LineWidth',pp.linewidth,...
         'Layer','top',...
-        'XScale','log')
+        'XScale','log','FontName',pp.fname)
 
     xlim([20 12000])
     xticks([100 1000 10000])

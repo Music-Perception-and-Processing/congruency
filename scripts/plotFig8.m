@@ -1,13 +1,15 @@
 clear
 close all
 
-set(0,'defaultTextInterpreter','latex')
-set(0,'defaultAxesTickLabelInterpreter','latex')
-set(0,'defaultLegendInterpreter','latex')
+run plot_properties.m
+
+set(0,'defaultAxesFontName',pp.fname)
+set(0,'defaultTextInterpreter','tex')
+set(0,'defaultAxesTickLabelInterpreter','tex')
+set(0,'defaultLegendInterpreter','tex')
 
 load('data/expData_norm.mat');
 expData = expData_norm;
-run plot_properties.m
 
 figh5 = figure('visible', pp.visible,...
     'DefaultTextFontName', pp.fname,...
@@ -122,30 +124,34 @@ p = plot(1:19,mean(partData),'-k','LineWidth',pp.linewidth);
 
 hold off
 
-legend([s(1),p,confInt,fit],{'participant data','mean','$95\%$ CI',['quadratic fit ($R^2 =$ .',num2str(100*round(lme.Rsquared.Adjusted,2)),')']},...
-    'Location','best')
+lgh = legend([s(1),p,confInt,fit],{'participant data','mean','95% CI',['quadratic fit (R2 = .',num2str(100*round(lme.Rsquared.Adjusted,2)),')']},...
+    'Location','north','NumColumns',2);
+lgh.ItemTokenSize = [5 2 0];
 
 xlim([0 20])
 xticks([1,4,7,10,13,16,19])
-xticklabels({'F\#1','F\#2','F\#3','F\#4','F\#5','F\#6','F\#7'})
+xticklabels({'F#1','F#2','F#3','F#4','F#5','F#6','F#7'})
 xtickangle(0)
 
 ylim([1 6])
 yticks([1 2 3 4 5 6])
 
-set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
+set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','FontName',pp.fname)
 
 xlabel('Pitch','FontSize',pp.fsize)
 ylabel('Sound pleasantness rating','FontSize',pp.fsize)
+
+% lgh.Position(1) = lgh.Position(1)+0.05;
+lgh.Position(2) = lgh.Position(2)+0.03;
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)
         set(figh5, 'PaperPositionMode', 'manual');
         set(figh5, 'PaperUnits', 'centimeters');
-        set(figh5, 'PaperPosition', [0 0 pp.figwidth pp.figheight]);
+        set(figh5, 'PaperPosition', [0 0 pp.figwidth/2 pp.figheight/2]);
         set(figh5, 'Toolbar', 'none')
         set(figh5, 'Menubar', 'none')
-        set(figh5, 'PaperSize', [pp.figwidth pp.figheight])
+        set(figh5, 'PaperSize', [pp.figwidth/2 pp.figheight/2])
     end
 end
 

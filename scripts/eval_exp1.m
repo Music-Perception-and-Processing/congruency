@@ -2,7 +2,7 @@ clear
 close all
 
 %% EXPERIMENT 1
-load('data/expData_norm.mat')
+load('data/expData1.mat')
 load('data/F0.mat')
 load('data/ICLVL.mat')
 load('data/grid.mat')
@@ -52,13 +52,13 @@ tab.exp1 = table(categorical(Y(:,1)), categorical(Y(:,2)), categorical(Y(:,3)), 
 tab.exp1.Properties.VariableNames = {'part', 'space', 'congr', 'resp', 'pitch'};
 
 % compute lme model 
-exp1_quality_2 = fitlme(tab.exp1, 'resp ~ 1 + space*congr + (1 + space + congr| part)', ...
+exp1_quality_2 = fitlme(tab.exp1, 'resp ~ 1 + space*congr + (1 + space + congr | part)', ...
 'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'effects')
 exp1_quality_2.Rsquared
 
 % but when pitch is included, effect of congr get very small (only in
 % interaction term) 
-exp1_quality_3 = fitlme(tab.exp1, 'resp ~ 1 + space*congr + pitch^2 + (1 + space + congr| part)', ...
+exp1_quality_3 = fitlme(tab.exp1, 'resp ~ 1 + space*congr + pitch^2 + (1 + space + congr | part)', ...
 'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'effects')
 exp1_quality_3.Rsquared
 
@@ -199,11 +199,12 @@ end
 numParts = size(expData.quality.(instrName{nInstr}),1);
 % convert to long format, so that lme can read data 
 for nInstr = 1:length(instrName)
-    X = []; 
+    X = [];
     for nP = 1:numParts 
         for nS = 1:19
+            pitch = muspitch2freq(pitches{nS});
             for nC = 1:4 %% !!!
-                 X = [X; nP, nS, nC, expData.quality.(instrName{nInstr})(nP, nS, nC)]; 
+                 X = [X; nP, nS, nC, expData.quality.(instrName{nInstr})(nP, nS, nC), nInstr, pitch];
             end
         end
     end
@@ -212,12 +213,44 @@ end
 
 % convert into table format 
 clear tab
+sumf4 = [];
 for nInstr = 1:4
     Y = expData.quality_long.(instrName{nInstr}); 
     tab.(instrName{nInstr}) = table(categorical(Y(:,1)), ...
         (Y(:,2)-1)/3, categorical(Y(:,3)), Y(:,4)); % scale pitches to be in octave units 
     tab.(instrName{nInstr}).Properties.VariableNames = {'part', 'pitch', 'cond', 'resp'};
+
+    % make combined table
+    % participants(38)
+    % pitch(19)
+    % condition(4)
+    % instrument(4)
+    % response
+    f1 = categorical(Y(:,1));
+    f2 = Y(:,6);
+    f3 = categorical(Y(:,3));
+    f3 = renamecats(f3,{'LRSE','MRSE','HRSE','congr.'});
+    f4 = categorical(Y(:,5));
+    sumf4 = [sumf4;f4];
+    f5 = Y(:,4);
+
+    if nInstr == 1
+        pleasantness = table(f1,f2,f3,f4,f5);
+        pleasantness.Properties.VariableNames = {'participants','pitch',...
+            'condition','instrument','response'};
+    else
+        pTemp = table(f1,f2,f3,f4,f5);
+        pTemp.Properties.VariableNames = {'participants','pitch',...
+            'condition','instrument','response'};
+        pleasantness = [pleasantness;pTemp];
+    end
+
+    pleasantness.Properties.VariableNames = {'participants','pitch',...
+        'condition','instrument','response'};
 end
+sumf4 = table(renamecats(sumf4,{'violin','vocal','clarinet','tuba'}));
+sumf4.Properties.VariableNames = {'instrument'};
+pleasantness(:,4) = sumf4;
 
 % compute lme models 
 for nInstr = 1:4

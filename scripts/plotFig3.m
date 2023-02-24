@@ -1,14 +1,16 @@
 clear
 close all
 
-set(0,'defaultTextInterpreter','latex')
-set(0,'defaultAxesTickLabelInterpreter','latex')
-set(0,'defaultLegendInterpreter','latex')
+run plot_properties.m
+
+set(0,'defaultAxesFontName',pp.fname)
+set(0,'defaultTextInterpreter','tex')
+set(0,'defaultAxesTickLabelInterpreter','tex')
+set(0,'defaultLegendInterpreter','tex')
 
 load('data/expData_1.mat')
 load('data/F0data.mat')
 load('data/NoteData.mat')
-run plot_properties.m
 
 figh3 = figure('Visible',pp.visible,...
     'DefaultTextFontName',pp.fname,...
@@ -95,10 +97,10 @@ for iCond = 1:numel(conds)
 % 
 %         end
 
-        text(iCond+sOSName(iSpace),1.2,['\textbf{',sNameShort{iSpace},'}',],...
+        text(iCond+sOSName(iSpace),1.2,sNameShort{iSpace},...
             'HorizontalAlignment','center',...
             'FontWeight','bold',...
-            'FontSize',pp.fsize-3)
+            'FontSize',pp.fsize-3,'FontName',pp.fname)
 
     end
 
@@ -119,9 +121,9 @@ yticks([1 2 3 4 5 6])
 
 % ytickangle(90)
 
-title('\textbf{A}','Position',[0.33 5.8 0],'HorizontalAlignment','center')
+title('A','Position',[0.33 5.8 0],'HorizontalAlignment','center')
 
-set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on')
+set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on','FontName',pp.fname)
 xlabel('Conditions','FontWeight','normal','FontSize',pp.fsize)
 ylabel('Sound pleasantness rating','FontWeight','normal','FontSize',pp.fsize)
 
@@ -191,8 +193,8 @@ p = plot(x,yCalc,...
     'Color',c(2,:));
 % plot(min(x):0.01:max(x),curve)
 
-text(16,2.6,['{\boldmath$R^2 =$}','\textbf{ .',num2str(100*round(stats(1),2)),'}'], ...
-    'FontSize',pp.fsize,'Color',c(2,:))
+text(16,2.6,['R^2 = .',num2str(100*round(stats(1),2))], ...
+    'FontSize',pp.fsize,'Color',c(2,:),'FontWeight','normal','FontName',pp.fname)
 
 hold off
 
@@ -203,11 +205,11 @@ xlim([0 35])
 xticks([0 6 12 18 24 30])
 xtickangle(0)
 
-legend([s,p],'incongruent data','fit \it{(m x + b)}','Location','northeast')
+legend([s,p],'incongruent data','linear fit','Location','northeast')
 
-title('\textbf{B}','Position',[-2.4 5.8 0],'HorizontalAlignment','center')
+title('B','Position',[-2.4 5.8 0],'HorizontalAlignment','center')
 
-set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on')
+set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on','FontName',pp.fname)
 xlabel('ICLVL / semitones','FontWeight','normal','FontSize',pp.fsize)
 % ylabel('Sound pleasantness rating','FontWeight','normal','FontSize',pp.fsize)
 

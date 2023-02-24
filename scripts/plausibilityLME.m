@@ -5,13 +5,16 @@ load('data/expData_norm.mat');
 expData = expData_norm;
 run plot_properties.m
 
+condNames = {'LRSE','MRSE','HRSE','congr.'};
+regNames = {'low','mid','high'};
+
 %% LME
 
-nPart = size(expData.quality.Violin,1);
-regIdx.Violin = [2 4 3];        % what should be the reference register?
-regIdx.VocalAlto = [2 4 3];
-regIdx.ClarinetBb = [2 4 3];
-regIdx.Tuba = [1 4 3];
+nPart = size(expData.plausib.Violin,1);
+regIdx.Violin = [2 3 4];        % what should be the reference register?
+regIdx.VocalAlto = [2 3 4];
+regIdx.ClarinetBb = [2 3 4];
+regIdx.Tuba = [1 3 4];
 
 for iInstr = 1:nInstr
     instrName = instruments{iInstr};
@@ -49,15 +52,42 @@ for iInstr = 1:nInstr
     instrName = instruments{iInstr};
     Y = expData.plausib_long.(instrName);
     tab.(instrName) = table(categorical(Y(:,1)), ...
-        categorical(Y(:,2)), categorical(Y(:,3)), Y(:,4)); % scale pitches to be in octave units
+        categorical(Y(:,2)), categorical(Y(:,3)), Y(:,4));
     tab.(instrName).Properties.VariableNames = {'part', 'reg', 'cond', 'resp'};
+
+    f1 = categorical(Y(:,1));
+    f2 = categorical(Y(:,2));
+    f2 = renamecats(f2,{'low';'mid';'high'});
+    f3 = categorical(Y(:,3));
+    f3 = renamecats(f3,{'LRSE';'MRSE';'HRSE';'congr.'});
+    f4 = Y(:,4);
+    f5 = categorical(iInstr.*ones(456,1));
+    f5 = renamecats(f5,instrumentNames{iInstr});
+    plausibility.(instrName) = table(f1,f2,f3,f4);
+    plausibility.(instrName).Properties.VariableNames = {'participants',...
+        'register','condition','response'};
+
+%     if iInstr == 1
+%         plausibility = table(f1,f2,f3,f4,f5);
+%         plausibility.Properties.VariableNames = {'participants','register',...
+%             'condition','response','instrument'};
+%     else
+%         pTemp = table(f1,f2,f3,f4,f5);
+%         pTemp.Properties.VariableNames = {'participants','register',...
+%             'condition','response','instrument'};
+%         plausibility = [plausibility;pTemp];
+%     end
+% 
+%     plausibility.Properties.VariableNames = {'participants','register',...
+%         'condition','response','instrument'};
+
 end
 
 % compute lme models
 for iInstr = 1:nInstr
-    instrName = instruments{iInstr};
-    exp2.plausib.(instrName) = fitlme(tab.(instrName), 'resp ~ 1 + cond*reg + (1|part)', ...
-        'FitMethod', 'REML', 'DummyVarCoding', 'effects')
+    instrName = instruments{iInstr}
+    exp2.plausib.(instrName) = fitlme(tab.(instrName), 'resp ~ 1 + reg*cond + (1|part)', ...
+        'FitMethod', 'REML', 'DummyVarCoding', 'effects');
     exp2.plausib.(instrName).Rsquared
 end
 

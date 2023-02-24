@@ -1,12 +1,13 @@
 clear
 close all
 
-set(0,'defaultTextInterpreter','latex')
-set(0,'defaultAxesTickLabelInterpreter','latex')
-set(0,'defaultLegendInterpreter','latex')
+run plot_properties.m
+
+set(0,'defaultTextInterpreter','tex')
+set(0,'defaultAxesTickLabelInterpreter','tex')
+set(0,'defaultLegendInterpreter','tex')
 
 load('data/expData_norm.mat');
-run plot_properties.m
 
 expData = expData_norm;
 
@@ -229,7 +230,7 @@ for iInstr = 1:nInstr
     yticks([1 3.5 6])
 
     if iInstr == 4
-        legh = legend(p,{'LRA','MRA','HRA','congr.'},...
+        legh = legend(p,{'LRSE','MRSE','HRSE','congr.'},...
             'FontSize',pp.fsize-2,...
             'NumColumns',4,...
             'Location','best');
@@ -250,15 +251,15 @@ for iInstr = 1:nInstr
     %     title(t{iInstr},...
     %         'Position',[-2.3 6 0],...
     %         'HorizontalAlignment','left')
-    title(['\textbf{',instrumentNames{iInstr},'}'])
+    title(instrumentNames{iInstr})
 
     if iInstr == 1
-        text(-6,6.6,'\textbf{A}','FontWeight','bold')
+        text(-5,6.6,'A','FontWeight','bold','FontName',pp.fname)
     end
 
     set(gca,'FontSize',pp.fsize-2,...
         'LineWidth',pp.linewidth,...
-        'FontName','Lating Modern Roman',...
+        'FontName',pp.fname,...
         'Layer','top')
 
     if iInstr == 4
@@ -425,12 +426,12 @@ for iInstr = 1:nInstr
     %     title(instrumentNames{iInstr})
 
     if iInstr == 1
-        text(-6,6.6,'\textbf{B}','FontWeight','bold')
+        text(-5,6.6,'B','FontWeight','bold','FontName',pp.fname)
     end
 
     set(gca,'FontSize',pp.fsize-2,...
         'LineWidth',pp.linewidth,...
-        'FontName','Lating Modern Roman',...
+        'FontName',pp.fname,...
         'Layer','top')
 
     %     if iInstr == 4
@@ -450,8 +451,8 @@ for iInstr = 1:nInstr
 
 end
 
-xlabel(tl,'Pitch re F\#','FontSize',pp.fsize+1,'Interpreter','latex')
-ylabel(tl,'Pleasantness rating','FontSize',pp.fsize+1,'Interpreter','latex')
+xlabel(tl,'Pitch re F#','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
+ylabel(tl,'Pleasantness rating','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)

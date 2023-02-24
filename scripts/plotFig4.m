@@ -1,14 +1,16 @@
 clear
 close all
 
-set(0,'defaultTextInterpreter','latex')
-set(0,'defaultAxesTickLabelInterpreter','latex')
-set(0,'defaultLegendInterpreter','latex')
+run plot_properties.m
+
+set(0,'defaultAxesFontName',pp.fname)
+set(0,'defaultTextInterpreter','tex')
+set(0,'defaultAxesTickLabelInterpreter','tex')
+set(0,'defaultLegendInterpreter','tex')
 
 load('data/expData_1.mat')
 load('data/F0data.mat')
 load('data/pca_data_v5.mat')
-run plot_properties.m
 
 figh4 = figure('Visible',pp.visible,...
     'DefaultTextFontName',pp.fname,...
@@ -33,7 +35,7 @@ coob = {3:7,3:5};
 
 % define tiled layout
 t = tiledlayout(1,3,'TileSpacing','loose','Padding','compact');
-ylabel(t,'Brightness rating','FontSize',pp.fsize,'Interpreter','latex')
+ylabel(t,'Brightness rating','FontSize',pp.fsize,'Interpreter','tex','FontName',pp.fname)
 color = lines(3);
 marker = {'o','s','^'};
 tileNum = [1,3];
@@ -98,9 +100,9 @@ for id = 1:numel(d)
     hold off
 
     if id == 1
-        title('\textbf{A}','Position',[-28 5.9 0],'HorizontalAlignment','center')
+        title('A','Position',[-28 5.9 0],'HorizontalAlignment','center')
     else
-        title('\textbf{B}','Position',[-21 5.9 0],'HorizontalAlignment','center')
+        title('B','Position',[-21 5.9 0],'HorizontalAlignment','center')
     end
     if id == 2
         leg = legend(e,{'congruent','incongruent','fixed'},...
@@ -114,8 +116,8 @@ for id = 1:numel(d)
     ylim([1 6])
     yticks([1 3.5 6])
 
-    set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
-    xlabel([pcName{id},' (',num2str(round(pcaData.explained(id),2)),'\%)'],...
+    set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on','FontName',pp.fname)
+    xlabel([pcName{id},' (',num2str(round(pcaData.explained(id),2)),'%)'],...
         'FontSize',pp.fsize)
     clear ci
 
@@ -162,8 +164,8 @@ for iCond = 1:nCond
     fit(iCond) = plot(x,yCalc,'-','LineWidth',pp.linewidth,...
         'Color',color(iCond,:));
 
-    text(loc(iCond,1),loc(iCond,2),['{\boldmath$R^2 =$}','\textbf{ .',num2str(100*round(R2(iCond),2)),'}'],...
-        'Color',colors(iCond,:),'Interpreter','latex')
+    text(loc(iCond,1),loc(iCond,2),['R^2 = .',num2str(100*round(R2(iCond),2))],...
+        'Color',colors(iCond,:),'Interpreter','tex','FontNAme',pp.fname)
 
 end
 
@@ -177,7 +179,7 @@ leg1.ItemTokenSize = [8 8 0];
 
 hold off
 
-title('\textbf{C}','Position',[1.23 5.9 0],'HorizontalAlignment','center')
+title('C','Position',[1.23 5.9 0],'HorizontalAlignment','center')
 
 
 xlim([1.5 3.5])
@@ -186,7 +188,7 @@ xticks([1.5 2 2.5 3 3.5])
 ylim([1 6])
 yticks([1 3.5 6])
 
-set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on')
+set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on','FontName',pp.fname)
 xlabel('Log frequency','FontWeight','normal','FontSize',pp.fsize)
 % ylabel('Sound brightness rating','FontWeight','normal','FontSize',pp.fsize)
 
@@ -196,7 +198,7 @@ leg.Position(3) = leg.Position(3)+0.05;
 leg.Position(4) = leg.Position(4)+0.06;
 % leg.Position(4) = leg.Position(4)+0.02;
 
-leg1.Position(1) = leg1.Position(1) + 0.026;
+leg1.Position(1) = leg1.Position(1) + 0.018;
 leg1.Position(2) = leg1.Position(2) + 0.155;
 leg1.Position(3) = leg1.Position(3) + 0.03;
 leg1.Position(4) = leg1.Position(4) + 0.15;

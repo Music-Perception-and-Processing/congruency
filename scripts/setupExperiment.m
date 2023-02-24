@@ -124,7 +124,7 @@ for iInstr = 1:nInstr
             xx(nCC+1:end) = 0;
             XX = idct(xx,[],1);
 
-            theta = 2;
+            theta = 2;  % stopping criterion in dB
             trueSE.(instrName)(iNote,:) = trueEnvelope(Xmax,XX,nCC,theta);
 %             trueSE.(instrName)(iNote,:) = trueEnvelope(X.(instrName)(iNote,:),XX,nCC,theta);
 
