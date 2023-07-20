@@ -3,3 +3,6 @@
 *.asv
 sounds/
 data/spectrum.mat
+data/spectrum_rms.mat
+data/spectrum_adj.mat
+data/spectrum_exp2.mat
