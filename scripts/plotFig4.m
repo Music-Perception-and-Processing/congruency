@@ -8,7 +8,7 @@ set(0,'defaultTextInterpreter','tex')
 set(0,'defaultAxesTickLabelInterpreter','tex')
 set(0,'defaultLegendInterpreter','tex')
 
-load('data/expData_1.mat')
+load('data/exp1_data.mat')
 load('data/F0data.mat')
 load('data/pca_data_v5.mat')
 

@@ -9,7 +9,7 @@ set(0,'defaultAxesTickLabelInterpreter','tex')
 set(0,'defaultLegendInterpreter','tex')
 
 
-load('data/expData_1.mat')
+load('data/exp1_data.mat')
 load('data/analysis_v2.mat')
 load('data/RangeIdx.mat')
 load('data/NoteData.mat')

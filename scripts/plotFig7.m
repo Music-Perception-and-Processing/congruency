@@ -8,7 +8,7 @@ set(0,'defaultTextInterpreter','tex')
 set(0,'defaultAxesTickLabelInterpreter','tex')
 set(0,'defaultLegendInterpreter','tex')
 
-load('data/expData_norm.mat')
+load('data/exp2_data.mat');
 expData = expData_norm;
 
 v1.Violin = [3 8 11 16];
