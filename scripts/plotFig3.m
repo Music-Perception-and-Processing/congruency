@@ -32,7 +32,7 @@ space = {'inner','outer'};
 sIdx.inner = 1:45;
 sIdx.outer = 46:81;
 sOS = [-0.15 0.15];
-sOSName = [-0.15 0.2];
+sOSName = [-0.12 0.2];
 sAlpha = [0.2 0.2];
 sNameShort = {'IN','OUT'};
 
@@ -68,7 +68,7 @@ for iCond = 1:numel(conds)
 %         hiQ = y(floor(0.75*length(y))) - median(y);
 
         sL = length(subjData.(cName).(sName));
-        scatter(iCond+sOS(iSpace)+randn(sL,1).*0.01,subjData.(cName).(sName),...
+        scatter(iCond+sOS(iSpace)+randn(sL,1).*0.02,subjData.(cName).(sName),...
             pp.scatterMsize,...
             colors(iCond,:).*cW(iSpace),'filled',...
             'MarkerEdgeAlpha',sAlpha(iSpace),...
@@ -79,7 +79,7 @@ for iCond = 1:numel(conds)
             'Color',colors(iCond,:).*cW(iSpace),...
             'Marker',markers{iCond},...
             'LineWidth',pp.linewidth,...
-            'MarkerSize',pp.markersize+2);
+            'MarkerSize',pp.markersize);
 
         mean(subjData.(cName).(sName))
         std(subjData.(cName).(sName))
@@ -97,10 +97,10 @@ for iCond = 1:numel(conds)
 % 
 %         end
 
-        text(iCond+sOSName(iSpace),1.2,sNameShort{iSpace},...
+        text(iCond+sOSName(iSpace),1.3,sNameShort{iSpace},...
             'HorizontalAlignment','center',...
             'FontWeight','bold',...
-            'FontSize',pp.fsize-3,'FontName',pp.fname)
+            'FontSize',pp.fsize-4,'FontName',pp.fname)
 
     end
 
@@ -121,11 +121,11 @@ yticks([1 2 3 4 5 6])
 
 % ytickangle(90)
 
-title('A','Position',[0.33 5.8 0],'HorizontalAlignment','center')
+title('A','Position',[0.27 5.9 0],'HorizontalAlignment','center')
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on','FontName',pp.fname)
-xlabel('Conditions','FontWeight','normal','FontSize',pp.fsize)
-ylabel('Sound pleasantness rating','FontWeight','normal','FontSize',pp.fsize)
+xlabel('Congruency condition','FontWeight','normal','FontSize',pp.fsize+2)
+ylabel('Pleasantness rating','FontWeight','normal','FontSize',pp.fsize+2)
 
 nexttile(4,[1 2]), hold on
 % variables
@@ -193,7 +193,7 @@ p = plot(x,yCalc,...
     'Color',c(2,:));
 % plot(min(x):0.01:max(x),curve)
 
-text(16,2.6,['R^2 = .',num2str(100*round(stats(1),2))], ...
+text(16,2.3,['R^2 = .',num2str(100*round(stats(1),2))], ...
     'FontSize',pp.fsize,'Color',c(2,:),'FontWeight','normal','FontName',pp.fname)
 
 hold off
@@ -205,24 +205,26 @@ xlim([0 35])
 xticks([0 6 12 18 24 30])
 xtickangle(0)
 
-legend([s,p],'incongruent data','linear fit','Location','northeast')
+legh = legend([s,p],'incongruent data','linear fit','Location','northeast');
+legh.ItemTokenSize = [14 2 0];
 
-title('B','Position',[-2.4 5.8 0],'HorizontalAlignment','center')
+title('B','Position',[-3.2 5.9 0],'HorizontalAlignment','center')
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','Box','on','FontName',pp.fname)
-xlabel('ICLVL / semitones','FontWeight','normal','FontSize',pp.fsize)
+xlabel('ICLVL / semitones','FontWeight','normal','FontSize',pp.fsize+2)
 % ylabel('Sound pleasantness rating','FontWeight','normal','FontSize',pp.fsize)
-
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)
         set(figh3, 'PaperPositionMode', 'manual');
         set(figh3, 'PaperUnits', 'centimeters');
-        set(figh3, 'PaperPosition', [0 0 pp.figwidth 7]);
+        set(figh3, 'PaperPosition', [0 0 pp.figwidth/1.5 5]);
         set(figh3, 'Toolbar', 'none')
         set(figh3, 'Menubar', 'none')
-        set(figh3, 'PaperSize', [pp.figwidth 7])
+        set(figh3, 'PaperSize', [pp.figwidth/1.5 5])
     end
 end
 
-print(figh3, [fig_folder filesep 'SQRcombined.pdf'], '-dpdf');
+if pp.print
+    print(figh3, [fig_folder filesep 'SQRcombined.pdf'], '-dpdf');
+end

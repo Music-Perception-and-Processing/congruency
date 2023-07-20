@@ -30,13 +30,21 @@ for iInstr = 1:nInstr
     expData.quality_long.(instrName) = X;
 end
 
+
 % convert into table format
 clear tab
 for iInstr = 1:nInstr
     instrName = instruments{iInstr};
     Y = expData.quality_long.(instrName);
+
+    % make conditions categorical, reorder and change names
+    condY = categorical(Y(:,3));
+    catNames = categories(condY);
+    condY = renamecats(condY,{'LRSE','MRSE','HRSE','congr.'});
+    condY = reordercats(condY,{'congr.','LRSE','MRSE','HRSE'});
+
     tab.(instrName) = table(categorical(Y(:,1)), ...
-        (Y(:,2)-1)/3, categorical(Y(:,3)), Y(:,4)); % scale pitches to be in octave units
+        (Y(:,2)-1)/3, condY, Y(:,4)); % scale pitches to be in octave units
     tab.(instrName).Properties.VariableNames = {'part', 'pitch', 'cond', 'resp'};
 end
 
@@ -44,7 +52,7 @@ end
 for iInstr = 1:nInstr
     instrName = instruments{iInstr};
     exp2.quality.(instrName) = fitlme(tab.(instrName), 'resp ~ 1 + pitch*cond + pitch:pitch + (1 | part)', ...
-        'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'effects')
+        'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'reference')
     exp2.quality.(instrName).Rsquared
 end
 % DD = designMatrix(exp2.quality.(instrName{nInstr})); % design matrix of
@@ -94,13 +102,13 @@ for iInstr = 1:nInstr
     pit_ind.(instrName) = find(~isnan(expData.quality.(instrName)(1, :, 4)));
 end
 stepSiz = 19;
-f.cond = [1 0 0; 0 1 0; 0 0 1; -1 -1 -1];
+f.cond = [1 0 0; 0 1 0; 0 0 1; 0 0 0];
 
 % compute lme models
 for iInstr = 1:nInstr
     instrName = instruments{iInstr};
     exp2.quality.(instrName) = fitlme(tab.(instrName), 'resp ~ 1 + pitch*cond + pitch:pitch + (1 | part)', ...
-        'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'effects')
+        'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'reference')
     exp2.quality.(instrName).Rsquared
 end
 
@@ -465,4 +473,6 @@ if isfield(pp, 'figwidth')
     end
 end
 
-print(figh1, [fig_folder filesep 'pleasantness_emp_model.pdf'], '-dpdf');
+if pp.print
+    print(figh1, [fig_folder filesep 'pleasantness_emp_model.pdf'], '-dpdf');
+end

@@ -108,9 +108,9 @@ lme = fitlme(tbl,'resp ~ 1 + pitch*pitch + (1|part)',...
         'FitMethod','REML','CheckHessian',1,'DummyVarCoding','effects')
 
 %% participant clustering
-Y = pdist(reshape(lme.residuals>0,nPart,nNote));
-Z = linkage(Y);
-T = cluster(Z,'maxclust',3);
+% Y = pdist(reshape(lme.residuals>0,nPart,nNote));
+% Z = linkage(Y);
+% T = cluster(Z,'maxclust',3);
 
 %% plotting
 fit = plot(x,lme.Fitted,...
@@ -138,8 +138,8 @@ yticks([1 2 3 4 5 6])
 
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top','FontName',pp.fname)
 
-xlabel('Pitch','FontSize',pp.fsize)
-ylabel('Sound pleasantness rating','FontSize',pp.fsize)
+xlabel('Pitch','FontSize',pp.fsize+2)
+ylabel('Pleasantness rating','FontSize',pp.fsize+2)
 
 % lgh.Position(1) = lgh.Position(1)+0.05;
 lgh.Position(2) = lgh.Position(2)+0.03;
@@ -155,4 +155,6 @@ if isfield(pp, 'figwidth')
     end
 end
 
-print(figh5, [fig_folder filesep 'pleasantness_distribution.pdf'], '-dpdf');
+if pp.print
+    print(figh5, [fig_folder filesep 'pleasantness_distribution.pdf'], '-dpdf');
+end

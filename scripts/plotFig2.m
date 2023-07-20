@@ -23,7 +23,7 @@ hold(axh2,'on');
 box(axh2,'on');
 
 % plot settings
-tl = tiledlayout(1,2,'TileSpacing','compact','Padding','compact');
+tl = tiledlayout(2,1,'TileSpacing','compact','Padding','compact');
 xlabel(tl,'PC1','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
 ylabel(tl,'PC2','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
 c = turbo(numel(NoteData.F0));
@@ -80,7 +80,7 @@ set(gca,...
     'Layer','top',...
     'Box','on','FontName',pp.fname)
 
-title('A','Position',[-32 17 0],'FontSize',pp.fsize)
+title('A','Position',[-30 17 0],'FontSize',pp.fsize)
 
 
 % incongruent
@@ -127,7 +127,7 @@ cbh = colorbar(h(end),...
     'LineWidth',pp.linewidth,...
     'FontSize', pp.fsize-4);
 
-% cbh.Layout.Tile = 'east';
+cbh.Layout.Tile = 'east';
 cbh.Label.String = 'F0 (pitch)';
 cbh.Label.FontSize = pp.fsize;
 cbh.Label.HorizontalAlignment = 'center';
@@ -139,18 +139,20 @@ set(gca,...
     'FontSize',pp.fsize-2,...
     'Layer','top',...
     'Box','on','FontName',pp.fname)
-title('B','Position',[-32 17 0],'FontSize',pp.fsize)
+title('B','Position',[-30 17 0],'FontSize',pp.fsize)
 
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)
         set(figh2, 'PaperPositionMode', 'manual');
         set(figh2, 'PaperUnits', 'centimeters');
-        set(figh2, 'PaperPosition', [0 0 pp.figwidth 5]);
+        set(figh2, 'PaperPosition', [0 0 pp.figwidth/2 8]);
         set(figh2, 'Toolbar', 'none')
         set(figh2, 'Menubar', 'none')
-        set(figh2, 'PaperSize', [pp.figwidth 5])
+        set(figh2, 'PaperSize', [pp.figwidth/2 8])
     end
 end
 
-print(figh2, [fig_folder filesep 'componentSpaceGrid.pdf'], '-dpdf');
+if pp.print
+    print(figh2, [fig_folder filesep 'componentSpaceGrid.pdf'], '-dpdf');
+end

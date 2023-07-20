@@ -235,4 +235,6 @@ if isfield(pp, 'figwidth')
     end
 end
 
-print(figh1, [fig_folder filesep 'SE_F0_shift.pdf'], '-dpdf');
+if pp.print
+    print(figh1, [fig_folder filesep 'SE_F0_shift.pdf'], '-dpdf');
+end

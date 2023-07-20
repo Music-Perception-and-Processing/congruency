@@ -17,6 +17,8 @@ allFiles = dir('data/responses/');
 
 % get all file names
 allNames = {allFiles(~[allFiles.isdir]).name};
+% remove .DS_Store-file
+allNames = allNames(~strcmp(allNames, '.DS_Store'));
 
 % get number of participants
 nPart = numel(allNames);

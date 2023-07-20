@@ -117,7 +117,7 @@ for id = 1:numel(d)
     yticks([1 3.5 6])
 
     set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on','FontName',pp.fname)
-    xlabel([pcName{id},' (',num2str(round(pcaData.explained(id),2)),'%)'],...
+    xlabel([pcName{id},' (',num2str(round(pcaData.explained(id),0)),'%)'],...
         'FontSize',pp.fsize)
     clear ci
 
@@ -189,7 +189,7 @@ ylim([1 6])
 yticks([1 3.5 6])
 
 set(gca,'LineWidth',pp.linewidth,'FontSize',pp.fsize-2,'Layer','top','Box','on','FontName',pp.fname)
-xlabel('Log frequency','FontWeight','normal','FontSize',pp.fsize)
+xlabel('log(F0)','FontWeight','normal','FontSize',pp.fsize)
 % ylabel('Sound brightness rating','FontWeight','normal','FontSize',pp.fsize)
 
 leg.Position(1) = leg.Position(1)-0.17;
@@ -198,7 +198,7 @@ leg.Position(3) = leg.Position(3)+0.05;
 leg.Position(4) = leg.Position(4)+0.06;
 % leg.Position(4) = leg.Position(4)+0.02;
 
-leg1.Position(1) = leg1.Position(1) + 0.018;
+leg1.Position(1) = leg1.Position(1) + 0.023;
 leg1.Position(2) = leg1.Position(2) + 0.155;
 leg1.Position(3) = leg1.Position(3) + 0.03;
 leg1.Position(4) = leg1.Position(4) + 0.15;
@@ -214,4 +214,6 @@ if isfield(pp, 'figwidth')
     end
 end
 
-print(figh4, [fig_folder filesep 'SBRcombined.pdf'], '-dpdf');
+if pp.print
+    print(figh4, [fig_folder filesep 'SBRcombined.pdf'], '-dpdf');
+end

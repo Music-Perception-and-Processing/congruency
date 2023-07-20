@@ -230,6 +230,7 @@ for nInstr = 1:4
     f2 = Y(:,6);
     f3 = categorical(Y(:,3));
     f3 = renamecats(f3,{'LRSE','MRSE','HRSE','congr.'});
+    f3 = reordercats(f3,{'congr.','LRSE','MRSE','HRSE'});
     f4 = categorical(Y(:,5));
     sumf4 = [sumf4;f4];
     f5 = Y(:,4);
@@ -254,8 +255,8 @@ pleasantness(:,4) = sumf4;
 
 % compute lme models 
 for nInstr = 1:4
-    exp2.quality.(instrName{nInstr}) = fitlme(tab.(instrName{nInstr}), 'resp ~ 1 + pitch*cond + pitch:pitch + (1 | part)', ...
-    'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'effects')
+    exp2.quality.(instrName{nInstr}) = fitlme(tab.(instrName{nInstr}), 'resp ~ 1 + cond + pitch + pitch:pitch + (1 | part)', ...
+    'FitMethod', 'REML', 'CheckHessian', 1, 'DummyVarCoding', 'reference')
     exp2.quality.(instrName{nInstr}).Rsquared
 end
 % DD = designMatrix(exp2.quality.(instrName{nInstr})); % design matrix of

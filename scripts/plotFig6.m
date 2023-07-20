@@ -23,7 +23,7 @@ regIdx.VocalAlto = [2 3 4];
 regIdx.ClarinetBb = [2 3 4];
 regIdx.Tuba = [1 3 4];
 
-tl = tiledlayout(1,4,'TileSpacing','loose','Padding','compact');
+tl = tiledlayout(2,2,'TileSpacing','compact','Padding','compact');
 c = lines(3);
 c(4,:) = [0 0 0];
 m = {'v','o','^','s'};
@@ -152,20 +152,20 @@ xlabel(tl,'Register','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fna
 ylabel(tl,'Plausibility rating','FontSize',pp.fsize+1,'Interpreter','tex','FontName',pp.fname)
 set(gca,'FontSize',pp.fsize-2,'LineWidth',pp.linewidth,'Layer','top')
 
-legh.Position(1) = legh.Position(1)-0.16;
-legh.Position(2) = legh.Position(2)+0.2;
+legh.Position(1) = legh.Position(1)-0.24;
+legh.Position(2) = legh.Position(2)+0.08;
 
 if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)
         set(figh2, 'PaperPositionMode', 'manual');
         set(figh2, 'PaperUnits', 'centimeters');
-        set(figh2, 'PaperPosition', [0 0 pp.figwidth 4.5]);
+        set(figh2, 'PaperPosition', [0 0 7 7]);
         set(figh2, 'Toolbar', 'none')
         set(figh2, 'Menubar', 'none')
-        set(figh2, 'PaperSize', [pp.figwidth 4.5])
+        set(figh2, 'PaperSize', [7 7])
     end
 end
 
-print(figh2, [fig_folder filesep 'plausibility.pdf'], '-dpdf');
-
-
+if pp.print
+    print(figh2, [fig_folder filesep 'plausibility.pdf'], '-dpdf');
+end

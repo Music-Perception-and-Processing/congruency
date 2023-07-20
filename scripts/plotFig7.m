@@ -23,7 +23,7 @@ axh3 = axes('Parent', figh3);
 hold(axh3, 'on');
 box(axh3, 'on');
 
-tl = tiledlayout(1,4,'TileSpacing','loose','Padding','compact');
+tl = tiledlayout(2,2,'TileSpacing','compact','Padding','compact');
 c = lines(3);
 c(4,:) = [0 0 0];
 m = {'v','o','^','s'};
@@ -121,7 +121,7 @@ for iInstr = 1:nInstr
     yhat_all = b_all(1) + b_all(2)*x_all;
 
     p = plot(x_all,yhat_all,'Color','red','LineWidth',pp.linewidth);
-    text(4,1.5,['R^2 = .',num2str(round(stats_all(1),2)*100)],...
+    text(3.4,1.7,['R^2 = .',num2str(round(stats_all(1),2)*100)],...
         'Color','red',...
         'FontSize',pp.fsize-2,'Interpreter','tex','FontName',pp.fname,'FontWeight','normal')
 
@@ -160,11 +160,13 @@ if isfield(pp, 'figwidth')
     if ~isempty(pp.figwidth)
         set(figh3, 'PaperPositionMode', 'manual');
         set(figh3, 'PaperUnits', 'centimeters');
-        set(figh3, 'PaperPosition', [0 0 pp.figwidth 4.5]);
+        set(figh3, 'PaperPosition', [0 0 7 7]);
         set(figh3, 'Toolbar', 'none')
         set(figh3, 'Menubar', 'none')
-        set(figh3, 'PaperSize', [pp.figwidth 4.5])
+        set(figh3, 'PaperSize', [7 7])
     end
 end
 
-print(figh3, [fig_folder filesep 'regression.pdf'], '-dpdf');
+if pp.print
+    print(figh3, [fig_folder filesep 'regression.pdf'], '-dpdf');
+end
