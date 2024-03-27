@@ -1,14 +1,15 @@
 % plot properties
 pp.visible = 'off'; % 'on'/'off', if figures only need to be saved
-pp.print = 0; % 0 / 1 if figures need to be printed
+pp.print = 1; % 0 / 1 if figures need to be printed
 pp.fsize = 10;
+% pp.fsize = 9;
 pp.figwidth = 15;   % width in cm
 pp.figheight = 10;  % height in cm
 pp.linewidth = 1;
 pp.markersize = 5;
 pp.scatterMsize = 10;
-pp.fname = 'Times New Roman';
-% pp.fname = 'Arial';
+% pp.fname = 'Times New Roman';
+pp.fname = 'Arial';
 
 if strcmp(pp.fname,'Arial')
     fig_folder = 'figures/arial/';
