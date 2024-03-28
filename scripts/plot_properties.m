@@ -8,8 +8,8 @@ pp.figheight = 10;  % height in cm
 pp.linewidth = 1;
 pp.markersize = 5;
 pp.scatterMsize = 10;
-% pp.fname = 'Times New Roman';
-pp.fname = 'Arial';
+pp.fname = 'Times New Roman';
+% pp.fname = 'Arial';
 
 if strcmp(pp.fname,'Arial')
     fig_folder = 'figures/arial/';
