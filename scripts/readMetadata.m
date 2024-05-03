@@ -13,7 +13,7 @@ close all
 %% Main study
 
 % define path of data
-allFiles = dir('data/responses/');
+allFiles = dir('data/original_responses/exp_1_info/');
 
 % get all file names
 allNames = {allFiles(~[allFiles.isdir]).name};
