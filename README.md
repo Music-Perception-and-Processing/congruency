@@ -1,2 +1,2 @@
-# congruency
-Study on congruency between fundamental frequency (F0) and spectral envelope (SE) in sustained musical instrument sounds
+# Exploring the relation between fundamental frequency and spectral envelope in the perception of musical instrument sounds
+Materials for the study on the co-dependence of SE and F0 in musical instrument sounds.
