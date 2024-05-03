@@ -1,8 +1,19 @@
 library(lme4)
 library(lmerTest)
+library(xtable)
+
+# define directories
+script_dir <- dirname(sys.frame(1)$ofile)
+main_folder <- file.path(script_dir, "..")
+
+# load functions
+if(!exists("estimates_table")) {
+  
+  source(file.path(main_folder, "R", "estimates_table.R"))
+}
 
 # load pleasantness data
-df = read.csv("/Users/simon/congruency/data/exp1_pleasantness.csv")
+df = read.csv(file.path(main_folder, "data", "compiled_responses", "exp1_pleasantness.csv"))
 
 # specify custom order of levels and set reference level
 df$space <- factor(df$space,

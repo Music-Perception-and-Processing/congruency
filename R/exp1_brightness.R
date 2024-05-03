@@ -2,8 +2,18 @@ library(lme4)
 library(lmerTest)
 library(xtable)
 
+# define directories
+script_dir <- dirname(sys.frame(1)$ofile)
+main_folder <- file.path(script_dir, "..")
+
+# load functions
+if(!exists("estimates_table")) {
+  
+  source("congruency/R/estimates_table.R")
+}
+
 # load brightness data
-brightness <- read.csv("/Users/simon/congruency/data/exp1_brightness.csv")
+brightness <- read.csv(file.path(main_folder, "data", "compiled_responses", "exp1_brightness.csv"))
 
 ## fix pc1
 # search for fixed F0 data and pc1

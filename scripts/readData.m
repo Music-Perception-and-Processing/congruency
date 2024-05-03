@@ -2,7 +2,7 @@ clear
 close all
 
 % define path of data
-folderName = 'data/responses/';
+folderName = 'data/original_responses/exp_2/';
 allFiles = dir(folderName);
 
 % get all file names

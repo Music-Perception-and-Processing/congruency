@@ -1,10 +1,14 @@
-all_files <- list.files("/Users/simon/congruency/data/responses/exp_2/")
+# define directories
+script_dir <- dirname(sys.frame(1)$ofile)
+main_folder <- file.path(script_dir, "..")
+
+all_files <- list.files(file.path(main_folder, "data", "original_responses", "exp_2"))
 
 # loop over participants
 msi_scores <- vector("list",length(all_files))
 n <- 1
 for (i in all_files) {
-  df <- read.csv(paste("/Users/simon/congruency/data/responses/exp_2/",i,
+  df <- read.csv(paste(file.path(main_folder, "data", "original_responses", "exp_2/"),i,
                        sep = ""),
                         skip = 3)
   start_row <- which(df$condition1 == "msiPerception5", arr.ind = TRUE)
